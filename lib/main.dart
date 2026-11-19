@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:masar_app/core/styles/themes.dart';
+import 'package:masar_app/profile_data/profile.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,8 +11,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: AppThemes.lightTheme,
+      darkTheme: AppThemes.darkTheme,
+      themeMode: ThemeMode.system,
+      home: ProfileSetupScreen(
+        onGoHome: () {
+
+        },
+      ),
     );
   }
 }
