@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LightPalette{
+class LightPalette {
   static const Color background = Color(0xFFF4F7F5);
   static const Color surface = Colors.white; // cards, inputs
   static const Color primaryColor = Color(0xFF082826); // buttons, nav bar
@@ -15,6 +15,12 @@ class LightPalette{
   static const Color borderColor = Color(0xFFD5DEDA);
   static const Color redColor = Color(0xFFEB5757);
   static const Color goldColor = Color(0xFFF2B531); // stars, trophies, achievements
+
+  // Extra shades used by the screens (previously repeated as raw hex values).
+  static const Color mint = Color(0xFFB9E8D8); // text/icons/progress on dark green
+  static const Color mintTint = Color(0xFFD5F0E8); // pills, avatar backgrounds
+  static const Color mutedBg = Color(0xFFE7ECE9); // locked items, tab bar
+  static const Color darkTrack = Color(0xFF315B51); // progress track on dark green
 }
 
 class DarkPalette {

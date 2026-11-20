@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:masar_app/core/functions/extensions.dart';
-import '../styles/text_styles.dart';
+import 'package:masar_app/core/styles/text_styles.dart';
+
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
@@ -23,11 +24,11 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: .start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (title != null) ...[
+        if (title case final label?) ...[
           Text(
-            title ?? '',
+            label,
             style: TextStyles.caption1.copyWith(
               fontWeight: FontWeight.w500,
               color: context.colorScheme.tertiary,
@@ -35,30 +36,13 @@ class CustomTextField extends StatelessWidget {
           ),
           const Gap(8),
         ],
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(14),
-            // boxShadow:context.isDark?[]: [
-            //   BoxShadow(
-            //     color: context.colorScheme.secondary,
-            //     blurRadius: 12,
-            //     offset: const Offset(0, 0),
-            //   ),
-            // ],
-          ),
-          child: TextFormField(
-            controller: controller,
-            maxLines: maxLines,
-            minLines: 1,
-            decoration: InputDecoration(
-              prefixIcon: prefixIcon,
-              hintText: hintText,
-            ),
-            validator: validator,
-            onTapOutside: (event) =>
-                FocusManager.instance.primaryFocus?.unfocus(),
-          ),
+        TextFormField(
+          controller: controller,
+          maxLines: maxLines,
+          minLines: 1,
+          decoration: InputDecoration(prefixIcon: prefixIcon, hintText: hintText),
+          validator: validator,
+          onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         ),
       ],
     );
