@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:masar_app/core/functions/extensions.dart';
+
+import '../styles/app_colors.dart';
 import '../styles/text_styles.dart';
+
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
@@ -48,16 +51,32 @@ class CustomTextField extends StatelessWidget {
             // ],
           ),
           child: TextFormField(
+            validator: validator,
             controller: controller,
             maxLines: maxLines,
-            minLines: 1,
+            onTapOutside: (event) =>
+                FocusManager.instance.primaryFocus?.unfocus(),
             decoration: InputDecoration(
               prefixIcon: prefixIcon,
               hintText: hintText,
+              filled: true,
+              hintStyle: TextStyles.body2.copyWith(
+                color: context.colorScheme.onSurface.withValues(alpha: 0.5),
+              ),
+              fillColor: context.colorScheme.surface,
+
+              contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: context.colorScheme.primary),
+              ),
             ),
-            validator: validator,
-            onTapOutside: (event) =>
-                FocusManager.instance.primaryFocus?.unfocus(),
           ),
         ),
       ],

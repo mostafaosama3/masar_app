@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:masar_app/core/constants/app_font.dart';
+
 import 'text_styles.dart';
 import 'app_colors.dart';
 
@@ -12,7 +13,7 @@ class AppThemes {
   static ThemeData get lightTheme => ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
-   fontFamily: AppFonts.plusJakartaSans,
+    fontFamily: AppFonts.plusJakartaSans,
     scaffoldBackgroundColor: LightPalette.background,
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
@@ -56,7 +57,10 @@ class AppThemes {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: _radius,
-        borderSide: const BorderSide(color: LightPalette.accentColor, width: 1.5),
+        borderSide: const BorderSide(
+          color: LightPalette.accentColor,
+          width: 1.5,
+        ),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: _radius,
@@ -188,7 +192,10 @@ class AppThemes {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: _radius,
-        borderSide: const BorderSide(color: DarkPalette.accentColor, width: 1.5),
+        borderSide: const BorderSide(
+          color: DarkPalette.accentColor,
+          width: 1.5,
+        ),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: _radius,
@@ -242,9 +249,7 @@ class AppThemes {
     ),
     chipTheme: ChipThemeData(
       backgroundColor: DarkPalette.primaryColor100,
-      labelStyle: TextStyles.caption1.copyWith(
-        color: DarkPalette.accentColor,
-      ),
+      labelStyle: TextStyles.caption1.copyWith(color: DarkPalette.accentColor),
       side: BorderSide.none,
       shape: const StadiumBorder(),
     ),
