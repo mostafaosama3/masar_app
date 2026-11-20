@@ -1,11 +1,11 @@
 // lib/features/bootcamps/widgets/bootcamp_card.dart
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:masar_app/core/functions/Navigations.dart';
 import 'package:masar_app/core/functions/extensions.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 import 'package:masar_app/core/styles/text_styles.dart';
 
+import '../../../../core/routes/navigation.dart';
 import '../../model/bootcamp_model.dart';
 import '../../views/details_screen.dart';
 
@@ -29,7 +29,7 @@ class BootcampCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
       onTap: () {
-        pushTo(context, BootcampDetailsScreen(bootcamp: bootcamp));
+        pushTo(context, BootcampDetailsScreen(bootcamp: bootcamp) as String);
       },
       child: Card(
         child: Padding(
@@ -41,10 +41,7 @@ class BootcampCard extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
                       color: LightPalette.primaryColor100,
                       borderRadius: BorderRadius.circular(20),
@@ -66,10 +63,7 @@ class BootcampCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
                       color: LightPalette.primaryColor100,
                       borderRadius: BorderRadius.circular(20),
@@ -77,11 +71,7 @@ class BootcampCard extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
-                          Icons.group_outlined,
-                          size: 14,
-                          color: colors.onSurface,
-                        ),
+                        Icon(Icons.group_outlined, size: 14, color: colors.onSurface),
                         const Gap(4),
                         Text(
                           '${bootcamp.enrolledCount} Enrolled',
@@ -112,11 +102,8 @@ class BootcampCard extends StatelessWidget {
                         child: Image.asset(
                           bootcamp.imageAsset,
                           fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => const Icon(
-                            Icons.code,
-                            color: LightPalette.primaryColor,
-                            size: 30,
-                          ),
+                          errorBuilder: (_, __, ___) =>
+                              const Icon(Icons.code, color: LightPalette.primaryColor, size: 30),
                         ),
                       ),
                     ),
@@ -128,9 +115,7 @@ class BootcampCard extends StatelessWidget {
                       children: [
                         Text(
                           bootcamp.title,
-                          style: TextStyles.body2.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
+                          style: TextStyles.body2.copyWith(fontWeight: FontWeight.w700),
                         ),
                         const Gap(6),
                         Row(
@@ -138,16 +123,12 @@ class BootcampCard extends StatelessWidget {
                             Icon(Icons.local_offer_outlined, size: 12),
                             Text(
                               ' ${bootcamp.track}  |  ',
-                              style: TextStyles.caption2.copyWith(
-                                color: LightPalette.primaryColor,
-                              ),
+                              style: TextStyles.caption2.copyWith(color: LightPalette.primaryColor),
                             ),
                             Icon(Icons.laptop_mac_outlined, size: 12),
                             Text(
                               ' ${bootcamp.mode}',
-                              style: TextStyles.caption2.copyWith(
-                                color: LightPalette.primaryColor,
-                              ),
+                              style: TextStyles.caption2.copyWith(color: LightPalette.primaryColor),
                             ),
                           ],
                         ),
@@ -157,16 +138,12 @@ class BootcampCard extends StatelessWidget {
                             Icon(Icons.calendar_today_outlined, size: 10),
                             Text(
                               ' ${bootcamp.dateRange}  • ',
-                              style: TextStyles.caption2.copyWith(
-                                color: LightPalette.primaryColor,
-                              ),
+                              style: TextStyles.caption2.copyWith(color: LightPalette.primaryColor),
                             ),
                             Icon(Icons.access_time_outlined, size: 10),
                             Text(
                               '  ${bootcamp.duration}',
-                              style: TextStyles.caption2.copyWith(
-                                color: LightPalette.primaryColor,
-                              ),
+                              style: TextStyles.caption2.copyWith(color: LightPalette.primaryColor),
                             ),
                           ],
                         ),
@@ -202,11 +179,7 @@ class BootcampCard extends StatelessWidget {
                   const Gap(5),
                   SizedBox(
                     height: 70,
-                    child: VerticalDivider(
-                      width: 1,
-                      thickness: 1,
-                      color: Colors.black12,
-                    ),
+                    child: VerticalDivider(width: 1, thickness: 1, color: Colors.black12),
                   ),
                   const Gap(10),
                   Column(
@@ -214,15 +187,11 @@ class BootcampCard extends StatelessWidget {
                     children: [
                       Text(
                         '${bootcamp.seatsLeft}',
-                        style: TextStyles.title2.copyWith(
-                          color: LightPalette.primaryColor,
-                        ),
+                        style: TextStyles.title2.copyWith(color: LightPalette.primaryColor),
                       ),
                       Text(
                         'Seats Left',
-                        style: TextStyles.caption2.copyWith(
-                          color: LightPalette.primaryColor,
-                        ),
+                        style: TextStyles.caption2.copyWith(color: LightPalette.primaryColor),
                       ),
                     ],
                   ),
