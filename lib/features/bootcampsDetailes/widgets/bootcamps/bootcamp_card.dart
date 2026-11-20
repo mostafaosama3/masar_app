@@ -6,6 +6,7 @@ import 'package:masar_app/core/styles/app_colors.dart';
 import 'package:masar_app/core/styles/text_styles.dart';
 
 import '../../../../core/routes/navigation.dart';
+import '../../../../core/routes/routes_name.dart';
 import '../../model/bootcamp_model.dart';
 import '../../views/details_screen.dart';
 
@@ -29,7 +30,10 @@ class BootcampCard extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
       onTap: () {
-        pushTo(context, BootcampDetailsScreen(bootcamp: bootcamp) as String);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => BootcampDetailsScreen(bootcamp: bootcamp)),
+        );
       },
       child: Card(
         child: Padding(

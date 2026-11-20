@@ -33,10 +33,7 @@ class CreateBootcampBanner extends StatelessWidget {
                 color: Colors.white.withValues(alpha: 0.14),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Icon(
-                Icons.rocket_launch_outlined,
-                color: Colors.white,
-              ),
+              child: const Icon(Icons.rocket_launch_outlined, color: Colors.white),
             ),
             const Gap(12),
             Expanded(
@@ -64,11 +61,7 @@ class CreateBootcampBanner extends StatelessWidget {
                 color: Colors.white.withValues(alpha: 0.18),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Icon(
-                Icons.arrow_forward,
-                color: Colors.white,
-                size: 18,
-              ),
+              child: const Icon(Icons.arrow_forward, color: Colors.white, size: 18),
             ),
           ],
         ),
