@@ -5,6 +5,8 @@ import 'package:masar_app/features/my_learning/presentation/my_learning_screen.d
 import 'package:masar_app/features/ranking/presentation/ranking_screen.dart';
 import 'package:masar_app/features/shared/presentation/masar_bottom_nav.dart';
 
+import '../../explore/view/explore_screen.dart';
+
 /// App shell: the five tabs + the bottom navigation bar.
 class MasarHome extends StatefulWidget {
   const MasarHome({super.key});
@@ -27,7 +29,7 @@ class _MasarHomeState extends State<MasarHome> {
           index: _selectedIndex,
           children: [
             const _PlaceholderPage(title: 'Home', icon: Icons.home_outlined),
-            const _PlaceholderPage(title: 'Explore', icon: Icons.explore_outlined),
+            ExploreScreen(),
             MyLearningScreen(onCreateBootcamp: _openBootcamp),
             const RankingScreen(),
             const _PlaceholderPage(title: 'Profile', icon: Icons.person_outline),

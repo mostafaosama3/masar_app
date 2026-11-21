@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:masar_app/core/styles/themes.dart';
 
 import 'features/bootcampsDetailes/views/bootcamps_screen.dart';
+import 'features/explore/view/explore_screen.dart';
+import 'features/shared/presentation/masar_home.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,6 +14,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: const BootcampsScreen());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: MasarHome());
   }
 }
