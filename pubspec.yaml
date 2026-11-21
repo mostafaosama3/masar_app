@@ -13,12 +13,9 @@ dependencies:
   flutter_svg: ^2.3.0
   gap: ^3.0.1
   go_router: ^18.1.2
-<<<<<<< HEAD
   image_picker: ^1.2.4
   qr_flutter: ^4.1.0
-=======
   lottie: ^3.8.2
->>>>>>> origin/personal_information
 
 dev_dependencies:
   flutter_lints: ^6.0.0

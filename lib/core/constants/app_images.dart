@@ -1,5 +1,5 @@
+
 class AppImages {
-<<<<<<< HEAD
   AppImages._();
 
   // Images - Existing Dev
@@ -20,18 +20,19 @@ class AppImages {
   static const String StringAdmincrown =
       'assets/icons/Admincrown.png';
 
-  // Splash & Onboarding - Feature Branch
+  // Splash & Onboarding
   static const String logo = 'assets/images/logo.png';
   static const String onboarding1 = 'assets/images/onboarding_1.jpg';
   static const String onboarding2 = 'assets/images/onboarding_2.jpg';
   static const String onboarding3 = 'assets/images/onboarding_3.jpg';
   static const String avatar = 'assets/images/avatar.png';
   static const String course = 'assets/images/course.png';
+
+  // Personal Information
+  static const String academicInfo = 'assets/images/academic_info.png';
+  static const String personalInfo = 'assets/images/personal_info.png';
+  static const String protfolieInfo = 'assets/images/portfolio_info.png';
+
+  // Lottie
+  static const String success = 'assets/lottie/Success.json';
 }
-=======
-static const String academicInfo = 'assets/images/academic_info.png';
-static const String personalInfo = 'assets/images/personal_info.png';
-static const String protfolieInfo = 'assets/images/portfolio_info.png';
-static const String success = 'assets/lottie/Success.json';  
-}
->>>>>>> origin/personal_information
