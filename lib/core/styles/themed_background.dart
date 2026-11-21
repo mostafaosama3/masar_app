@@ -26,7 +26,7 @@ class ThemedScreenBackground extends StatelessWidget {
           child: Image.asset(
             assetPath,
             fit: fit,
-            errorBuilder: (_, __, ___) =>
+            errorBuilder: (_, _, _) =>
                 ColoredBox(color: Theme.of(context).scaffoldBackgroundColor),
           ),
         ),

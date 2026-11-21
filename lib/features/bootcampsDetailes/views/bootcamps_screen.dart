@@ -123,7 +123,7 @@ class _BootcampsScreenState extends State<BootcampsScreen> {
                     : ListView.separated(
                         padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
                         itemCount: items.length,
-                        separatorBuilder: (_, __) => const Gap(14),
+                        separatorBuilder: (_, _) => const Gap(14),
                         itemBuilder: (context, index) {
                           final bootcamp = items[index];
                           return BootcampCard(

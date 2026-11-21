@@ -26,7 +26,7 @@ class BootcampDetailsHeader extends StatelessWidget {
           child: Stack(
             children: [
               Hero(
-                tag: 'bootcamp-image-${bootcamp.id ?? bootcamp.title}',
+                tag: 'bootcamp-image-${bootcamp.id}',
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: SizedBox(
@@ -35,7 +35,7 @@ class BootcampDetailsHeader extends StatelessWidget {
                     child: Image.asset(
                       bootcamp.imageAsset,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (_ , _ , _) => Container(
                         color: LightPalette.primaryColor100,
                         child: const Icon(
                           Icons.code,

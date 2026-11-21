@@ -5,11 +5,11 @@ class AppImages {
   // Images - Existing Dev
   static const String techAcademyMark =
       'assets/images/techAcademyMark.png';
-  static const String Reactlogotile =
+  static const String reactLogoTile =
       'assets/images/Reactlogotile.png';
-  static const String Laptopcourse =
+  static const String laptopCourse =
       'assets/images/Laptopcourse.png';
-  static const String Flutterlogo =
+  static const String flutterLogo =
       'assets/images/Flutterlogo.png';
   static const String darkBackGround =
       'assets/images/darkBackGround.png';
@@ -17,7 +17,7 @@ class AppImages {
       'assets/images/lightBackground.png';
 
   // Icons - Existing Dev
-  static const String StringAdmincrown =
+  static const String stringAdminCrown =
       'assets/icons/Admincrown.png';
 
   // Splash & Onboarding

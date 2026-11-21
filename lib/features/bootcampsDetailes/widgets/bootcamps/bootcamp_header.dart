@@ -54,7 +54,7 @@ class BootcampHeader extends StatelessWidget {
                         child: Row(
                           children: [
                             Image.asset(
-                              AppImages.StringAdmincrown,
+                              AppImages.stringAdminCrown,
                               width: 10,
                               height: 10,
                             ),

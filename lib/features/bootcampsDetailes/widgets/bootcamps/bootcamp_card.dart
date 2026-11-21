@@ -5,8 +5,6 @@ import 'package:masar_app/core/functions/extensions.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 import 'package:masar_app/core/styles/text_styles.dart';
 
-import '../../../../core/routes/navigation.dart';
-import '../../../../core/routes/routes_name.dart';
 import '../../model/bootcamp_model.dart';
 import '../../views/details_screen.dart';
 
@@ -97,7 +95,7 @@ class BootcampCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Hero(
-                    tag: 'bootcamp-image-${bootcamp.id ?? bootcamp.title}',
+                    tag: 'bootcamp-image-${bootcamp.id}',
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(14),
                       child: SizedBox(
@@ -106,7 +104,7 @@ class BootcampCard extends StatelessWidget {
                         child: Image.asset(
                           bootcamp.imageAsset,
                           fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) =>
+                          errorBuilder: (_, _, _) =>
                               const Icon(Icons.code, color: LightPalette.primaryColor, size: 30),
                         ),
                       ),
