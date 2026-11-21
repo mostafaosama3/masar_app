@@ -9,4 +9,6 @@ class RouteNames {
   static const String passwordChanged = '/password-changed';
   static const String main = '/main';
   static const String details = '/details';
+  static const String createBootcamp = '/create-bootcamp';
+  static const String bootcampDetails = '/bootcamp-details';
 }
