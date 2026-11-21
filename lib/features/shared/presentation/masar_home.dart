@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masar_app/core/functions/extensions.dart';
+
 import 'package:masar_app/features/bootcamp/cubit/create_bootcamp_cubit.dart';
 import 'package:masar_app/features/bootcamp/data/repositories/mock_bootcamp_repository.dart';
 import 'package:masar_app/features/bootcamp/create_bootcamp_screen.dart';
+
 import 'package:masar_app/features/my_learning/data/repositories/mock_my_learning_repository.dart';
 import 'package:masar_app/features/my_learning/presentation/cubit/my_learning_cubit.dart';
 import 'package:masar_app/features/my_learning/presentation/my_learning_screen.dart';
+
 import 'package:masar_app/features/ranking/data/repositories/mock_ranking_repository.dart';
 import 'package:masar_app/features/ranking/presentation/cubit/ranking_cubit.dart';
 import 'package:masar_app/features/ranking/presentation/ranking_screen.dart';
+
+import 'package:masar_app/features/profile/profile_screen.dart';
+
 import 'package:masar_app/features/shared/presentation/masar_bottom_nav.dart';
 
-/// App shell: the five tabs + the bottom navigation bar.
 class MasarHome extends StatefulWidget {
   const MasarHome({super.key});
 
@@ -26,8 +31,9 @@ class _MasarHomeState extends State<MasarHome> {
   void _openBootcamp() => Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => BlocProvider(
-            // Swap MockBootcampRepository for the real one later.
-            create: (_) => CreateBootcampCubit(MockBootcampRepository()),
+            create: (_) => CreateBootcampCubit(
+              MockBootcampRepository(),
+            ),
             child: const CreateBootcampScreen(),
           ),
         ),
@@ -40,32 +46,54 @@ class _MasarHomeState extends State<MasarHome> {
         child: IndexedStack(
           index: _selectedIndex,
           children: [
-            const _PlaceholderPage(title: 'Home', icon: Icons.home_outlined),
-            const _PlaceholderPage(title: 'Explore', icon: Icons.explore_outlined),
-            BlocProvider(
-              // Swap MockMyLearningRepository for the real one later.
-              create: (_) => MyLearningCubit(MockMyLearningRepository())..load(),
-              child: MyLearningScreen(onCreateBootcamp: _openBootcamp),
+            const _PlaceholderPage(
+              title: 'Home',
+              icon: Icons.home_outlined,
             ),
+
+            const _PlaceholderPage(
+              title: 'Explore',
+              icon: Icons.explore_outlined,
+            ),
+
             BlocProvider(
-              // Swap MockRankingRepository for the real one later.
-              create: (_) => RankingCubit(MockRankingRepository())..load(),
+              create: (_) => MyLearningCubit(
+                MockMyLearningRepository(),
+              )..load(),
+              child: MyLearningScreen(
+                onCreateBootcamp: _openBootcamp,
+              ),
+            ),
+
+            BlocProvider(
+              create: (_) => RankingCubit(
+                MockRankingRepository(),
+              )..load(),
               child: const RankingScreen(),
             ),
-            const _PlaceholderPage(title: 'Profile', icon: Icons.person_outline),
+
+            const ProfileScreen(),
           ],
         ),
       ),
+
       bottomNavigationBar: MasarBottomNav(
         selectedIndex: _selectedIndex,
-        onTap: (index) => setState(() => _selectedIndex = index),
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
     );
   }
 }
 
 class _PlaceholderPage extends StatelessWidget {
-  const _PlaceholderPage({required this.title, required this.icon});
+  const _PlaceholderPage({
+    required this.title,
+    required this.icon,
+  });
 
   final String title;
   final IconData icon;
@@ -76,9 +104,19 @@ class _PlaceholderPage extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 42, color: context.colorScheme.primary),
+          Icon(
+            icon,
+            size: 42,
+            color: context.colorScheme.primary,
+          ),
           const SizedBox(height: 10),
-          Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
         ],
       ),
     );

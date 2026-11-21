@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:masar_app/core/routes/routes_name.dart';
 import 'package:masar_app/features/ONboarding/onboardin.dart';
+import 'package:masar_app/features/shared/presentation/masar_home.dart';
 import 'package:masar_app/features/splash/splash_screen.dart';
 import 'package:masar_app/features/profile/profile_screen.dart';
+import 'package:masar_app/profile_data/widgets/complete_profile_screen.dart';
 
 class Routes {
   static final GoRouter router = GoRouter(
     initialLocation: RouteNames.splash,
     routes: [
-      // Splash Route
       GoRoute(
         path: RouteNames.splash,
-        name: RouteNames.splash,
+        name: 'splash',
         builder: (context, state) => const SplashScreen(),
       ),
 
-      // Onboarding Route
       GoRoute(
         path: RouteNames.onboarding,
-        name: RouteNames.onboarding,
+        name: 'onboarding',
         builder: (context, state) => const OnboardingScreen(),
       ),
 
-      // Welcome Route
       GoRoute(
         path: RouteNames.welcome,
-        name: RouteNames.welcome,
+        name: 'welcome',
         builder: (context, state) => const Scaffold(
           body: Center(
             child: Text('Welcome'),
@@ -34,11 +34,21 @@ class Routes {
         ),
       ),
 
-      // Profile Route
+      GoRoute(
+        path: RouteNames.main,
+        name: 'main',
+        builder: (context, state) => const MasarHome(),
+      ),
+
       GoRoute(
         path: RouteNames.profile,
-        name: RouteNames.profile,
+        name: 'profile',
         builder: (context, state) => const ProfileScreen(),
+      ),
+      GoRoute(
+        path: RouteNames.completeProfile,
+        name: 'completeProfile',
+        builder: (context, state) => const CompleteProfileScreen(),
       ),
     ],
   );

@@ -14,6 +14,7 @@ class RouteNames {
   // Main Routes
   static const String main = '/main';
   static const String profile = '/profile';
+  static const String completeProfile = '/complete-profile';
   static const String details = '/details';
 
   // Bootcamp Routes
