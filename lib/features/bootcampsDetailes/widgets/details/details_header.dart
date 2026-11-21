@@ -20,7 +20,7 @@ class BootcampDetailsHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 1. صورة عريضة بمسافة مريحة من فوق والجناب + سهم الرجوع على الشمال
+        
         Padding(
           padding: EdgeInsets.fromLTRB(16, topPadding + 10, 16, 0),
           child: Stack(
@@ -73,7 +73,7 @@ class BootcampDetailsHeader extends StatelessWidget {
 
         const Gap(5),
 
-        // 2. شارة الحالة + التراك + المدة + العنوان
+        
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(

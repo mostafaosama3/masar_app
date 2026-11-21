@@ -8,9 +8,6 @@ class MyLearningCubit extends Cubit<MyLearningState> {
   MyLearningCubit(this._repository) : super(const MyLearningInitial());
 
   final MyLearningRepository _repository;
-
-  /// [refresh] = true is used by pull-to-refresh: the current content stays
-  /// on screen instead of flashing a loading spinner.
   Future<void> load({bool refresh = false}) async {
     if (!refresh) emit(const MyLearningLoading());
 

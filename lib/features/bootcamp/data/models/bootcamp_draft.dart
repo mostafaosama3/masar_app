@@ -1,4 +1,4 @@
-/// What the "Create bootcamp" form sends to the backend when you press Publish.
+
 class BootcampDraft {
   const BootcampDraft({
     required this.title,
@@ -34,7 +34,7 @@ class BootcampDraft {
   final String endTime; // "17:30"
   final List<String> days; // [Monday, Wednesday, ...]
 
-  /// "React, Next.js,, TypeScript " -> [React, Next.js, TypeScript]
+  
   static List<String> parseSkills(String raw) => raw
       .split(',')
       .map((s) => s.trim())

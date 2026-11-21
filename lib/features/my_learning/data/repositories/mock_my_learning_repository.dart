@@ -1,7 +1,5 @@
 import 'package:masar_app/features/my_learning/data/models/learning_overview.dart';
 import 'package:masar_app/features/my_learning/data/repositories/my_learning_repository.dart';
-
-/// Fake data (the same values that used to be hard-coded in the UI).
 class MockMyLearningRepository implements MyLearningRepository {
   @override
   Future<LearningOverview> getOverview() async {

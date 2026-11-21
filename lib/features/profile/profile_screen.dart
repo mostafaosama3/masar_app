@@ -6,8 +6,6 @@ import 'package:masar_app/core/functions/extensions.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 import 'package:masar_app/core/styles/text_styles.dart';
 import 'package:masar_app/core/widgets/app_asset_image.dart';
-
-// TODO: replace with real user data from the backend / cubit
 const _stats = [
   ('24', 'Total Sessions', Icons.play_arrow_rounded),
   ('1.8K+', 'Trainees Taught', Icons.groups_rounded),
@@ -160,8 +158,7 @@ class ProfileScreen extends StatelessWidget {
                     action: _LinkAction(label: 'View All', onTap: () {}),
                     child: const _AchievementsRow(),
                   ),
-                  // The floating bottom navigation bar belongs to the main
-                  // shell screen (RouteNames.main), not to this screen.
+                  
                   const Gap(24),
                 ],
               ),

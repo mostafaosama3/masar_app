@@ -116,7 +116,7 @@ class _BootcampsScreenState extends State<BootcampsScreen> {
                 ),
               ),
 
-              // 2. الجزء اللي بيسكرول بس: الكروت
+              
               Expanded(
                 child: items.isEmpty
                     ? const Center(child: Text('No bootcamps match your filter.'))
@@ -136,7 +136,7 @@ class _BootcampsScreenState extends State<BootcampsScreen> {
                       ),
               ),
 
-              // 3. الجزء الثابت السفلي: البانر
+              
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 6, 16, 10),
                 child: CreateBootcampBanner(

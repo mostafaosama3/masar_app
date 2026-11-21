@@ -1,7 +1,4 @@
 part of 'create_bootcamp_screen.dart';
-
-// ───────────────────────────── Shared bits ─────────────────────────────
-
 const _introTitle = TextStyle(fontSize: 15, fontWeight: FontWeight.w800);
 
 const _fieldBorder = OutlineInputBorder(
@@ -69,7 +66,6 @@ class _Notice extends StatelessWidget {
   }
 }
 
-/// A tappable box that looks like a text field (used for dates and times).
 class _PickerField extends StatelessWidget {
   const _PickerField(this.label, this.value, this.icon, this.onTap);
 

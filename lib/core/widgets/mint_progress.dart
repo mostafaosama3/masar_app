@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 
-/// Rounded progress bar for dark-green cards. [value] is 0..1.
+
 class MintProgress extends StatelessWidget {
   const MintProgress({super.key, required this.value});
 

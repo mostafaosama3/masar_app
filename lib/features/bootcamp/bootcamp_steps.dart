@@ -1,5 +1,4 @@
 part of 'create_bootcamp_screen.dart';
-
 mixin _BootcampSteps on State<CreateBootcampScreen> {
   GlobalKey<FormState> get _detailsFormKey;
   GlobalKey<FormState> get _scheduleFormKey;
@@ -63,7 +62,7 @@ mixin _BootcampSteps on State<CreateBootcampScreen> {
 
   Widget _reviewHeader(String title);
 
-  // ───────────────────────────── Steps ─────────────────────────────
+  
 
   Widget _detailsStep() {
     return Form(
@@ -101,7 +100,7 @@ mixin _BootcampSteps on State<CreateBootcampScreen> {
     );
   }
 
-  // ───────────────────────────── Schedule Step ─────────────────────────────
+  
 
   Widget _scheduleStep() {
     return Form(
@@ -215,7 +214,7 @@ mixin _BootcampSteps on State<CreateBootcampScreen> {
     );
   }
 
-  // ───────────────────────────── Review Step ─────────────────────────────
+  
 
   Widget _reviewStep() {
     final weeks = _end!.difference(_start!).inDays ~/ 7;

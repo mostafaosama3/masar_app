@@ -10,7 +10,7 @@ class CreateBootcampCubit extends Cubit<CreateBootcampState> {
   final BootcampRepository _repository;
 
   Future<void> submit(BootcampDraft draft) async {
-    // Ignore double taps while a request is already running.
+   
     if (state is CreateBootcampSubmitting) return;
 
     emit(const CreateBootcampSubmitting());

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masar_app/core/functions/extensions.dart';
 
-/// Image.asset with a fallback icon, so screens still run before the
-/// real assets from Figma are added to assets/images/.
+
 class AppAssetImage extends StatelessWidget {
   const AppAssetImage(
     this.path, {

@@ -1,6 +1,3 @@
-/// Everything the My Learning screen needs, returned by ONE call.
-/// Each model has a `fromJson` so the real backend can be plugged in later
-/// without touching the UI.
 class LearningOverview {
   const LearningOverview({
     required this.program,
@@ -48,10 +45,10 @@ class ProgramInfo {
     required this.cohort,
   });
 
-  final String name; // Flutter & Dart Mastery
-  final String provider; // Taqniya Labs
-  final String track; // Executive Track
-  final String cohort; // Cohort W-24
+  final String name; 
+  final String provider; 
+  final String track;
+  final String cohort; 
 
   factory ProgramInfo.fromJson(Map<String, dynamic> json) => ProgramInfo(
         name: json['name'] as String,
@@ -78,7 +75,7 @@ class MasteryStats {
   final int daysAttended; // 28
   final int totalDays; // 40
   final int tasksGraded; // 12
-  final int cohortTopPercent; // 5  -> "Top 5%"
+  final int cohortTopPercent; 
 
   double get progress => (progressPercent / 100).clamp(0.0, 1.0);
 

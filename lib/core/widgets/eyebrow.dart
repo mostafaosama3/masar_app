@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 
-/// Small uppercase section label (e.g. "STANDINGS").
+
 class Eyebrow extends StatelessWidget {
   const Eyebrow(this.text, {super.key, this.size = 9});
 

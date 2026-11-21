@@ -43,13 +43,7 @@ class CustomTextField extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(14),
-            // boxShadow:context.isDark?[]: [
-            //   BoxShadow(
-            //     color: context.colorScheme.secondary,
-            //     blurRadius: 12,
-            //     offset: const Offset(0, 0),
-            //   ),
-            // ],
+            
           ),
           child: TextFormField(
             validator: validator,

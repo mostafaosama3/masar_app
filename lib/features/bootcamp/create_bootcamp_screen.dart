@@ -110,7 +110,7 @@ class _CreateBootcampScreenState extends State<CreateBootcampScreen>
     'Saturday',
   };
 
-  // ───────────────────────────── Lifecycle ─────────────────────────────
+  
 
   @override
   void dispose() {
@@ -121,7 +121,7 @@ class _CreateBootcampScreenState extends State<CreateBootcampScreen>
     super.dispose();
   }
 
-  // ───────────────────────────── Actions ─────────────────────────────
+  
 
   @override
   Future<void> _pickDate(
@@ -211,7 +211,7 @@ class _CreateBootcampScreenState extends State<CreateBootcampScreen>
     context.read<CreateBootcampCubit>().submit(draft);
   }
 
-  // ───────────────────────────── Layout ─────────────────────────────
+  
 
   @override
   Widget build(BuildContext context) {
@@ -282,7 +282,7 @@ class _CreateBootcampScreenState extends State<CreateBootcampScreen>
     );
   }
 
-  // ───────────────────────────── Bottom Bar ─────────────────────────────
+  
 
   Widget _bottomBar() {
     return BlocBuilder<CreateBootcampCubit, CreateBootcampState>(
@@ -330,7 +330,7 @@ class _CreateBootcampScreenState extends State<CreateBootcampScreen>
     );
   }
 
-  // ───────────────────────────── Stepper ─────────────────────────────
+  
 
   Widget _stepper() {
     return Container(
