@@ -20,4 +20,7 @@ class RouteNames {
   // Bootcamp Routes
   static const String createBootcamp = '/create-bootcamp';
   static const String bootcampDetails = '/bootcamp-details';
+
+  // Completion & Review Route
+  static const String completionReview = '/completion-review';
 }

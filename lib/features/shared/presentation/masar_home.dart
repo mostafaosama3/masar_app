@@ -32,15 +32,13 @@ class _MasarHomeState extends State<MasarHome> {
   int _selectedIndex = 2;
 
   void _openBootcamp() => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (_) => CreateBootcampCubit(
-              MockBootcampRepository(),
-            ),
-            child: const CreateBootcampScreen(),
-          ),
-        ),
-      );
+    MaterialPageRoute(
+      builder: (_) => BlocProvider(
+        create: (_) => CreateBootcampCubit(MockBootcampRepository()),
+        child: const CreateBootcampScreen(),
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -49,29 +47,17 @@ class _MasarHomeState extends State<MasarHome> {
         child: IndexedStack(
           index: _selectedIndex,
           children: [
-            const _PlaceholderPage(
-              title: 'Home',
-              icon: Icons.home_outlined,
-            ),
+            const _PlaceholderPage(title: 'Home', icon: Icons.home_outlined),
 
-            const _PlaceholderPage(
-              title: 'Explore',
-              icon: Icons.explore_outlined,
+            ExploreScreen(),
+
+            BlocProvider(
+              create: (_) => MyLearningCubit(MockMyLearningRepository())..load(),
+              child: MyLearningScreen(onCreateBootcamp: _openBootcamp),
             ),
 
             BlocProvider(
-              create: (_) => MyLearningCubit(
-                MockMyLearningRepository(),
-              )..load(),
-              child: MyLearningScreen(
-                onCreateBootcamp: _openBootcamp,
-              ),
-            ),
-
-            BlocProvider(
-              create: (_) => RankingCubit(
-                MockRankingRepository(),
-              )..load(),
+              create: (_) => RankingCubit(MockRankingRepository())..load(),
               child: const RankingScreen(),
             ),
 
@@ -93,10 +79,7 @@ class _MasarHomeState extends State<MasarHome> {
 }
 
 class _PlaceholderPage extends StatelessWidget {
-  const _PlaceholderPage({
-    required this.title,
-    required this.icon,
-  });
+  const _PlaceholderPage({required this.title, required this.icon});
 
   final String title;
   final IconData icon;
@@ -107,19 +90,9 @@ class _PlaceholderPage extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            icon,
-            size: 42,
-            color: context.colorScheme.primary,
-          ),
+          Icon(icon, size: 42, color: context.colorScheme.primary),
           const SizedBox(height: 10),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
+          Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
         ],
       ),
     );

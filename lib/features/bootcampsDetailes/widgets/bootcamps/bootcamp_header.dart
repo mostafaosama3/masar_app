@@ -7,11 +7,7 @@ import 'package:masar_app/core/styles/app_colors.dart';
 import 'package:masar_app/core/styles/text_styles.dart';
 
 class BootcampHeader extends StatelessWidget {
-  const BootcampHeader({
-    super.key,
-    required this.liveCount,
-    required this.onAddTap,
-  });
+  const BootcampHeader({super.key, required this.liveCount, required this.onAddTap});
 
   final int liveCount;
   final VoidCallback onAddTap;
@@ -43,21 +39,14 @@ class BootcampHeader extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                         decoration: BoxDecoration(
                           color: LightPalette.primaryColor100,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Row(
                           children: [
-                            Image.asset(
-                              AppImages.stringAdminCrown,
-                              width: 10,
-                              height: 10,
-                            ),
+                            Image.asset(AppImages.cloud, width: 10, height: 10),
                             Gap(6),
                             Text(
                               'Admin',
@@ -72,9 +61,7 @@ class BootcampHeader extends StatelessWidget {
                       const Gap(6),
                       Text(
                         '• MASAR Enterprise',
-                        style: TextStyles.caption2.copyWith(
-                          color: LightPalette.greyColor,
-                        ),
+                        style: TextStyles.caption2.copyWith(color: LightPalette.greyColor),
                       ),
                     ],
                   ),
@@ -84,10 +71,7 @@ class BootcampHeader extends StatelessWidget {
             Stack(
               clipBehavior: Clip.none,
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.notifications_none_rounded),
-                ),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.notifications_none_rounded)),
                 Positioned(
                   top: 6,
                   right: 6,
@@ -112,11 +96,7 @@ class BootcampHeader extends StatelessWidget {
             const CircleAvatar(
               radius: 20,
               backgroundColor: LightPalette.primaryColor100,
-              child: Icon(
-                Icons.business,
-                size: 20,
-                color: LightPalette.primaryColor,
-              ),
+              child: Icon(Icons.business, size: 20, color: LightPalette.primaryColor),
             ),
           ],
         ),
@@ -132,19 +112,12 @@ class BootcampHeader extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 4,
-                          vertical: 4,
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
                         decoration: BoxDecoration(
                           color: LightPalette.primaryColor100,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Icon(
-                          Icons.circle,
-                          size: 8,
-                          color: LightPalette.primaryColor,
-                        ),
+                        child: Icon(Icons.circle, size: 8, color: LightPalette.primaryColor),
                       ),
                       const Gap(3),
                       Text(
@@ -162,9 +135,7 @@ class BootcampHeader extends StatelessWidget {
 
                   Text(
                     'Manage and monitor all your bootcamps, track performance and applications.',
-                    style: TextStyles.body2.copyWith(
-                      color: LightPalette.greyColor,
-                    ),
+                    style: TextStyles.body2.copyWith(color: LightPalette.greyColor),
                   ),
                 ],
               ),

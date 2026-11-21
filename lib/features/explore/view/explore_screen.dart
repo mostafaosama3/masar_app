@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 import 'package:masar_app/core/widgets/custom_textfield.dart';
 import 'package:masar_app/features/explore/view/details_screen.dart';
 import 'package:masar_app/features/explore/widgets/explore_widgets/filterPill.dart';
 
+import '../../../core/routes/routes_name.dart';
 import '../../../core/styles/text_styles.dart';
 import '../../bootcampsDetailes/views/details_screen.dart';
 import '../data/dummy_data.dart';
@@ -254,10 +256,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   return FeaturedBootcampTile(
                     item: item,
                     onDetailsTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => BootcampDetailsScreenn.fromBootcamp(item),
-                        ),
+                      context.push(
+                        RouteNames.bootcampDetails,
+                        extra: BootcampDetailsScreenn.mapBootcamp(
+                          item,
+                        ), // أو الدالة العامة لو خليتيها public
                       );
                     },
                   );

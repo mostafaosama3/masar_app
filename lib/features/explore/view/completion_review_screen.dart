@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:masar_app/core/routes/routes_name.dart';
 
 import '../widgets/completion_widgets/bottom_certificate_bar.dart';
 import '../widgets/completion_widgets/completion_app_bar.dart';
@@ -9,7 +11,6 @@ import '../widgets/completion_widgets/graduation_banner_card.dart';
 import '../widgets/completion_widgets/likelihood_card.dart';
 import '../widgets/completion_widgets/overall_experience_card.dart';
 import '../widgets/completion_widgets/what_stood_out_section.dart';
-import 'explore_screen.dart';
 
 class CompletionReviewScreen extends StatefulWidget {
   const CompletionReviewScreen({super.key});
@@ -54,13 +55,11 @@ class _CompletionReviewScreenState extends State<CompletionReviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF3F6F4),
-      appBar: CompletionAppBar(progress: 1.0, onBack: () => Navigator.of(context).maybePop()),
+      appBar: CompletionAppBar(progress: 1.0, onBack: () => context.pop()),
       bottomNavigationBar: BottomCertificateBar(
         onSubmit: () {
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (_) => const ExploreScreen()),
-            (route) => false,
-          );
+          _showSnack('Certificate claim submitted!');
+          context.go(RouteNames.main);
         },
       ),
       body: SafeArea(

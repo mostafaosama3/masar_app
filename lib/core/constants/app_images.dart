@@ -1,4 +1,3 @@
-
 class AppImages {
   AppImages._();
 

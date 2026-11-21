@@ -26,13 +26,7 @@ class MainButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
-      ),
-      child: Text(
-        title,
-        style: TextStyles.subtitle.copyWith(
-          color: Colors.white,
-        ),
-      ),
+      child: Text(title, style: TextStyles.subtitle.copyWith(color: Colors.white)),
     );
   }
 }

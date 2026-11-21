@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:masar_app/core/routes/routes_name.dart';
 
 import '../../explore/model/explore_model.dart';
 import '../model/details_model.dart';
@@ -14,19 +16,19 @@ import '../widgets/details_widgets/prerequisites_card.dart';
 import 'completion_review_screen.dart';
 
 class BootcampDetailsScreenn extends StatefulWidget {
-  const BootcampDetailsScreenn._({super.key, required this.viewData});
+  const BootcampDetailsScreenn({super.key, required this.viewData});
 
   factory BootcampDetailsScreenn.fromBootcamp(BootcampCardItem item, {Key? key}) {
-    return BootcampDetailsScreenn._(key: key, viewData: _mapBootcamp(item));
+    return BootcampDetailsScreenn(key: key, viewData: mapBootcamp(item));
   }
 
   factory BootcampDetailsScreenn.fromProgram(ProgramCardItem item, {Key? key}) {
-    return BootcampDetailsScreenn._(key: key, viewData: _mapProgram(item));
+    return BootcampDetailsScreenn(key: key, viewData: mapProgram(item));
   }
 
   final BootcampDetailsViewData viewData;
 
-  static BootcampDetailsViewData _mapBootcamp(BootcampCardItem item) {
+  static BootcampDetailsViewData mapBootcamp(BootcampCardItem item) {
     final modules = (item.modules == null || item.modules!.isEmpty)
         ? const [
             BootcampModuleItem(
@@ -91,7 +93,7 @@ class BootcampDetailsScreenn extends StatefulWidget {
     );
   }
 
-  static BootcampDetailsViewData _mapProgram(ProgramCardItem item) {
+  static BootcampDetailsViewData mapProgram(ProgramCardItem item) {
     final modules = (item.modules == null || item.modules!.isEmpty)
         ? const [
             BootcampModuleItem(
@@ -189,10 +191,7 @@ class _BootcampDetailsScreenState extends State<BootcampDetailsScreenn> {
         closingText: d.footerClosing,
         tuitionText: d.tuitionText,
         ctaLabel: d.ctaLabel,
-        onApplyTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => const CompletionReviewScreen()));
-        },
+        onApplyTap: () => context.push(RouteNames.completionReview),
       ),
       body: SafeArea(
         child: ListView(

@@ -118,24 +118,36 @@ class FeaturedBootcampTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Icon(Icons.star, size: 16, color: LightPalette.goldColor),
-                  const Gap(4),
-                  Text(
-                    '${item.rating} (${item.alumni} alumni)',
-                    style: TextStyles.caption1.copyWith(color: LightPalette.secondaryColor),
-                  ),
-                ],
-              ),
-              ElevatedButton(
-                onPressed: onDetailsTap,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: LightPalette.primaryColor,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              Expanded(
+                child: Row(
+                  children: [
+                    Icon(Icons.star, size: 16, color: LightPalette.goldColor),
+                    const Gap(4),
+                    Flexible(
+                      child: Text(
+                        '${item.rating} (${item.alumni} alumni)',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyles.caption1.copyWith(color: LightPalette.secondaryColor),
+                      ),
+                    ),
+                  ],
                 ),
-                child: const Text('View Details', style: TextStyle(fontSize: 12)),
+              ),
+              const Gap(8),
+              Flexible(
+                child: ElevatedButton(
+                  onPressed: onDetailsTap,
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                    backgroundColor: LightPalette.primaryColor,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  ),
+                  child: const Text('View Details', style: TextStyle(fontSize: 12)),
+                ),
               ),
             ],
           ),
@@ -268,15 +280,27 @@ class ProgramTilee extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _Badge(text: item.tag, bg: LightPalette.mintTint, fg: LightPalette.accentColor),
-              ElevatedButton(
-                onPressed: onApplyTap,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: LightPalette.primaryColor,
-                  foregroundColor: LightPalette.onPrimaryColor,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              Flexible(
+                child: _Badge(
+                  text: item.tag,
+                  bg: LightPalette.mintTint,
+                  fg: LightPalette.accentColor,
                 ),
-                child: const Text('Apply Now', style: TextStyle(fontSize: 12)),
+              ),
+              const Gap(8),
+              Flexible(
+                child: ElevatedButton(
+                  onPressed: onApplyTap,
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    backgroundColor: LightPalette.primaryColor,
+                    foregroundColor: LightPalette.onPrimaryColor,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  ),
+                  child: const Text('Apply Now', style: TextStyle(fontSize: 12)),
+                ),
               ),
             ],
           ),

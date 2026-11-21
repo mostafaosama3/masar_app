@@ -15,7 +15,7 @@ final List<BootcampModel> dummyBootcamps = [
     seatsLeft: 24,
     progress: 0.84,
     status: BootcampStatus.active,
-    imageAsset: AppImages.flutterLogo,
+    imageAsset: AppImages.Flutterlogo,
   ),
   BootcampModel(
     id: '2',
@@ -28,7 +28,7 @@ final List<BootcampModel> dummyBootcamps = [
     seatsLeft: 78,
     progress: 0.62,
     status: BootcampStatus.active,
-    imageAsset: AppImages.laptopCourse,
+    imageAsset: AppImages.Laptopcourse,
   ),
   BootcampModel(
     id: '3',
@@ -41,6 +41,6 @@ final List<BootcampModel> dummyBootcamps = [
     seatsLeft: 50,
     progress: 0.0,
     status: BootcampStatus.upcoming,
-    imageAsset: AppImages.reactLogoTile,
+    imageAsset: AppImages.Reactlogotile,
   ),
 ];
