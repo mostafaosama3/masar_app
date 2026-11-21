@@ -98,15 +98,20 @@ class RankingTabPill extends StatelessWidget {
     this.text, {
     super.key,
     this.selected = false,
+    this.onTap,
   });
 
   final String text;
   final bool selected;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           color: selected ? Colors.white : Colors.transparent,
@@ -122,6 +127,7 @@ class RankingTabPill extends StatelessWidget {
                 ? LightPalette.secondaryColor
                 : LightPalette.greyColor,
           ),
+        ),
         ),
       ),
     );

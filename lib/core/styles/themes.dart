@@ -3,8 +3,6 @@ import 'package:masar_app/core/constants/app_font.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 import 'package:masar_app/core/styles/text_styles.dart';
 
-/// The colors a theme needs. Light and dark fill the same slots, so one
-/// builder ([AppThemes._build]) can create both themes.
 class _Palette {
   const _Palette({
     required this.background,

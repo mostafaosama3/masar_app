@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
+import 'package:masar_app/core/functions/formatters.dart';
 import 'package:masar_app/core/widgets/mint_progress.dart';
+import 'package:masar_app/features/ranking/data/models/ranking_overview.dart';
 
 import 'ranking_components.dart';
 
@@ -10,7 +12,14 @@ const _subtleOnDark = Color(0xFFB9D4CB);
 // ───────────────────────── Profile Card ─────────────────────────
 
 class RankingProfileCard extends StatelessWidget {
-  const RankingProfileCard({super.key});
+  const RankingProfileCard({
+    super.key,
+    required this.profile,
+    required this.scope,
+  });
+
+  final RankingProfile profile;
+  final RankingScope scope;
 
   @override
   Widget build(BuildContext context) {
@@ -27,35 +36,35 @@ class RankingProfileCard extends StatelessWidget {
           ),
         ],
       ),
-      child: const Column(
+      child: Column(
         children: [
           Row(
             children: [
-              RankingPersonAvatar(radius: 21),
-              Gap(9),
+              const RankingPersonAvatar(radius: 21),
+              const Gap(9),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Zaid Al-Omari  You',
-                      style: TextStyle(
+                      '${profile.name}  You',
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 13,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
                     Text(
-                      'LEVEL 7 • ARCHITECTURE CRAFTSMAN',
-                      style: TextStyle(
+                      'LEVEL ${profile.level} • ${profile.levelTitle.toUpperCase()}',
+                      style: const TextStyle(
                         color: _subtleOnDark,
                         fontSize: 8,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     Text(
-                      '#4  COHORT RANK',
-                      style: TextStyle(
+                      '#${profile.rank}  ${scope.rankLabel}',
+                      style: const TextStyle(
                         color: _subtleOnDark,
                         fontSize: 8,
                       ),
@@ -67,8 +76,8 @@ class RankingProfileCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    '2,840',
-                    style: TextStyle(
+                    formatNumber(profile.totalXp),
+                    style: const TextStyle(
                       color: LightPalette.mint,
                       fontSize: 22,
                       fontWeight: FontWeight.w800,
@@ -85,21 +94,21 @@ class RankingProfileCard extends StatelessWidget {
               ),
             ],
           ),
-          Gap(15),
+          const Gap(15),
           Row(
             children: [
               Expanded(
                 child: Text(
-                  'Level Progress (840 / 1,000 XP)',
-                  style: TextStyle(
+                  'Level Progress (${formatNumber(profile.levelXp)} / ${formatNumber(profile.levelXpTarget)} XP)',
+                  style: const TextStyle(
                     color: Colors.white70,
                     fontSize: 9,
                   ),
                 ),
               ),
               Text(
-                '160 XP to Lead Eng',
-                style: TextStyle(
+                '${formatNumber(profile.xpToNextLevel)} XP to ${profile.nextLevelTitle}',
+                style: const TextStyle(
                   color: LightPalette.mint,
                   fontSize: 8,
                   fontWeight: FontWeight.w700,
@@ -107,26 +116,26 @@ class RankingProfileCard extends StatelessWidget {
               ),
             ],
           ),
-          Gap(7),
-          MintProgress(value: .84),
-          Gap(15),
+          const Gap(7),
+          MintProgress(value: profile.levelProgress),
+          const Gap(15),
           Row(
             children: [
               RankingStatBox(
                 Icons.military_tech_outlined,
-                '14',
+                '${profile.badgesCount}',
                 'Badges',
               ),
-              Gap(7),
+              const Gap(7),
               RankingStatBox(
                 Icons.verified_outlined,
-                '98%',
+                '${profile.taskQualityPercent}%',
                 'Task Quality',
               ),
-              Gap(7),
+              const Gap(7),
               RankingStatBox(
                 Icons.bolt,
-                '100%',
+                '${profile.streakPercent}%',
                 'Streak',
               ),
             ],
@@ -140,7 +149,26 @@ class RankingProfileCard extends StatelessWidget {
 // ───────────────────────── Sprint Card ─────────────────────────
 
 class RankingSprintCard extends StatelessWidget {
-  const RankingSprintCard({super.key});
+  const RankingSprintCard({
+    super.key,
+    required this.sprint,
+    required this.isJoining,
+    required this.onJoin,
+  });
+
+  final RankingSprint sprint;
+  final bool isJoining;
+  final VoidCallback onJoin;
+
+  static String _endsIn(DateTime endsAt) {
+    final left = endsAt.difference(DateTime.now());
+    if (left.isNegative) return '• ENDED';
+    if (left.inDays >= 1) {
+      return '• ENDS IN ${left.inDays} ${left.inDays == 1 ? 'DAY' : 'DAYS'}';
+    }
+    final hours = left.inHours < 1 ? 1 : left.inHours;
+    return '• ENDS IN $hours ${hours == 1 ? 'HOUR' : 'HOURS'}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -164,28 +192,28 @@ class RankingSprintCard extends StatelessWidget {
             ),
           ),
           const Gap(10),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '• ENDS IN 2 DAYS',
-                  style: TextStyle(
+                  _endsIn(sprint.endsAt),
+                  style: const TextStyle(
                     color: LightPalette.redColor,
                     fontSize: 8,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
                 Text(
-                  'Flutter Animations Sprint',
-                  style: TextStyle(
+                  sprint.title,
+                  style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
                 Text(
-                  'Prize: +300 XP & Animation Guru badge',
-                  style: TextStyle(
+                  'Prize: +${sprint.prizeXp} XP & ${sprint.prizeBadge} badge',
+                  style: const TextStyle(
                     fontSize: 9,
                     color: LightPalette.greyColor,
                   ),
@@ -194,15 +222,21 @@ class RankingSprintCard extends StatelessWidget {
             ),
           ),
           FilledButton(
-            onPressed: () {},
+            onPressed: sprint.joined || isJoining ? null : onJoin,
             style: FilledButton.styleFrom(
               minimumSize: const Size(54, 38),
               padding: const EdgeInsets.symmetric(horizontal: 12),
             ),
-            child: const Text(
-              'Join',
-              style: TextStyle(fontSize: 10),
-            ),
+            child: isJoining
+                ? const SizedBox(
+                    width: 14,
+                    height: 14,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : Text(
+                    sprint.joined ? 'Joined' : 'Join',
+                    style: const TextStyle(fontSize: 10),
+                  ),
           ),
         ],
       ),

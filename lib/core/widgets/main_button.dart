@@ -17,14 +17,22 @@ class MainButton extends StatelessWidget {
   final double height;
 
   @override
-  Widget build(BuildContext context) => ElevatedButton(
-    onPressed: ontap,
-    style: ElevatedButton.styleFrom(
-      backgroundColor: context.theme.primaryColor,
-      minimumSize: Size(width, height),
-      padding: const EdgeInsets.symmetric(horizontal: 14),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    ),
-    child: Text(title, style: TextStyles.subtitle.copyWith(color: Colors.white)),
-  );
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: ontap,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: context.theme.primaryColor,
+        minimumSize: Size(width, height),
+        padding: const EdgeInsets.symmetric(horizontal: 14),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      ),
+      child: Text(
+        title,
+        style: TextStyles.subtitle.copyWith(
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
 }

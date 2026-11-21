@@ -46,6 +46,7 @@ class CustomTextField extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(14),
+
           ),
           child: TextFormField(
             validator: validator,

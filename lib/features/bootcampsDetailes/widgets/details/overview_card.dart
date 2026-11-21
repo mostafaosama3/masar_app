@@ -1,7 +1,6 @@
 // lib/features/bootcamps/widgets/bootcamp_details_overview_card.dart
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:masar_app/core/functions/extensions.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 import 'package:masar_app/core/styles/text_styles.dart';
 
@@ -17,7 +16,6 @@ class BootcampDetailsOverviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colorScheme;
     final progressPercent = (progress * 100).round();
 
     return Container(

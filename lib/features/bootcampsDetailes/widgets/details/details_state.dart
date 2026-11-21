@@ -14,7 +14,6 @@ class BootcampDetailsStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colorScheme;
     final progressPercent = (bootcamp.progress * 100).round();
 
     return Row(
@@ -39,7 +38,7 @@ class BootcampDetailsStats extends StatelessWidget {
 }
 
 class _StatTile extends StatelessWidget {
-  const _StatTile({required this.label, required this.value, this.valueColor});
+  const _StatTile({required this.label, required this.value}) : valueColor = null;
 
   final String label;
   final String value;

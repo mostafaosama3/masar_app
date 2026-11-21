@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 
-/// "MASAR EXECUTIVE" eyebrow + screen title + notifications bell.
+
 class ScreenHeader extends StatelessWidget {
   const ScreenHeader({super.key, required this.title});
 

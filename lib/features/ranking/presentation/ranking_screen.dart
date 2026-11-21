@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:masar_app/core/functions/formatters.dart';
+import 'package:masar_app/core/functions/toast.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 import 'package:masar_app/core/widgets/screen_header.dart';
+import 'package:masar_app/features/ranking/data/models/ranking_overview.dart';
+import 'package:masar_app/features/ranking/presentation/cubit/ranking_cubit.dart';
 
 import 'widgets/ranking_cards.dart';
 import 'widgets/ranking_components.dart';
@@ -9,171 +14,185 @@ import 'widgets/ranking_components.dart';
 class RankingScreen extends StatelessWidget {
   const RankingScreen({super.key});
 
+  static IconData _badgeIcon(String key) => switch (key) {
+        'speed' => Icons.speed,
+        'bug' => Icons.bug_report_outlined,
+        'code' => Icons.code,
+        _ => Icons.military_tech_outlined,
+      };
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-      children: [
-        const ScreenHeader(title: 'Ranking'),
+    return BlocConsumer<RankingCubit, RankingState>(
+      listenWhen: (previous, current) =>
+          current.joinError != null && current.joinError != previous.joinError,
+      listener: (context, state) => showErrorDialog(context, state.joinError!),
+      builder: (context, state) {
+        final cubit = context.read<RankingCubit>();
+        final overview = state.overview;
+        final showContent = state.status == RankingStatus.loaded && overview != null;
 
-        const Gap(16),
-
-        const RankingProfileCard(),
-
-        const Gap(16),
-
-        Container(
-          padding: const EdgeInsets.all(4),
-          decoration: BoxDecoration(
-            color: LightPalette.mutedBg,
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: const Row(
+        return RefreshIndicator(
+          onRefresh: () => cubit.load(refresh: true),
+          child: ListView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
             children: [
-              RankingTabPill('Cohort', selected: true),
-              RankingTabPill('Global MASAR'),
-              RankingTabPill('Sprint'),
-            ],
-          ),
-        ),
+              const ScreenHeader(title: 'Ranking'),
 
-        const Gap(22),
+              const Gap(16),
 
-        const RankingSectionHeader(
-          'PODIUM LEADERS',
-          'Taqniya Cohort #12',
-        ),
+              if (showContent) ...[
+                RankingProfileCard(
+                  profile: overview.profile,
+                  scope: overview.scope,
+                ),
+                const Gap(16),
+              ],
 
-        const Gap(14),
-
-        const Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Expanded(
-              child: RankingPodium(
-                name: 'Reem H.',
-                xp: '3,120 XP',
-                rank: '2',
-                medal: 'Silver',
-                height: 102,
-              ),
-            ),
-            Expanded(
-              child: RankingPodium(
-                name: 'Omar F.',
-                xp: '3,450 XP',
-                rank: '1',
-                medal: 'Champion',
-                height: 128,
-                winner: true,
-              ),
-            ),
-            Expanded(
-              child: RankingPodium(
-                name: 'Khalid S.',
-                xp: '2,990 XP',
-                rank: '3',
-                medal: 'Bronze',
-                height: 92,
-              ),
-            ),
-          ],
-        ),
-
-        const Gap(20),
-
-        const RankingSprintCard(),
-
-        const Gap(22),
-
-        const RankingSectionHeader(
-          'STANDINGS',
-          'Live sync',
-        ),
-
-        const Gap(9),
-
-        const RankingStanding(
-          rank: '4',
-          name: 'Zaid Al-Omari',
-          role: 'Architecture Craftsman',
-          xp: '2,840 XP',
-          change: '+120 this week',
-          selected: true,
-        ),
-
-        const RankingStanding(
-          rank: '5',
-          name: 'Sarah Al-Dossari',
-          role: 'Full-Stack Trainee',
-          xp: '2,710 XP',
-          change: '+95 this week',
-        ),
-
-        const RankingStanding(
-          rank: '6',
-          name: 'Fahad Al-Mutairi',
-          role: 'Cloud Systems Fellow',
-          xp: '2,650 XP',
-          change: '+60 this week',
-        ),
-
-        const RankingStanding(
-          rank: '7',
-          name: 'Noura Al-Ghamdi',
-          role: 'Security Associate',
-          xp: '2,590 XP',
-          change: '+80 this week',
-        ),
-
-        const Gap(20),
-
-        Row(
-          children: [
-            const Expanded(
-              child: Text(
-                'Earned Badges',
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w800,
+              Container(
+                padding: const EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: LightPalette.mutedBg,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Row(
+                  children: [
+                    for (final scope in RankingScope.values)
+                      RankingTabPill(
+                        scope.label,
+                        selected: scope == state.scope,
+                        onTap: () => cubit.selectScope(scope),
+                      ),
+                  ],
                 ),
               ),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text('View All (14)'),
-            ),
-          ],
-        ),
 
-        const Row(
-          children: [
-            Expanded(
-              child: RankingBadge(
-                Icons.speed,
-                'Fast Submitter',
-                'Top 5% speed',
+              if (state.status == RankingStatus.loading) ...const [
+                Gap(100),
+                Center(child: CircularProgressIndicator()),
+              ],
+
+              if (state.status == RankingStatus.failure) ...[
+                const Gap(100),
+                const Center(child: Text('Could not load the ranking.')),
+                const Gap(12),
+                Center(
+                  child: OutlinedButton.icon(
+                    onPressed: cubit.load,
+                    icon: const Icon(Icons.refresh),
+                    label: const Text('Try again'),
+                  ),
+                ),
+              ],
+
+              if (showContent) ...[
+                const Gap(22),
+                ..._podiumSection(overview),
+                ..._sprintSection(overview, state, cubit),
+                const Gap(22),
+                const RankingSectionHeader('STANDINGS', 'Live sync'),
+                const Gap(9),
+                for (final entry in overview.standings)
+                  RankingStanding(
+                    rank: '${entry.rank}',
+                    name: entry.name,
+                    role: entry.role,
+                    xp: '${formatNumber(entry.xp)} XP',
+                    change: '+${entry.weeklyChange} this week',
+                    selected: entry.isMe,
+                  ),
+                const Gap(20),
+                ..._badgesSection(overview),
+              ],
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  List<Widget> _podiumSection(RankingOverview overview) {
+    final podium = overview.podium;
+    if (podium.length < 3) return const [];
+
+    Widget slot(RankingEntry e, String medal, double height, {bool winner = false}) =>
+        Expanded(
+          child: RankingPodium(
+            name: e.name,
+            xp: '${formatNumber(e.xp)} XP',
+            rank: '${e.rank}',
+            medal: medal,
+            height: height,
+            winner: winner,
+          ),
+        );
+
+    return [
+      RankingSectionHeader('PODIUM LEADERS', overview.boardTitle),
+      const Gap(14),
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          slot(podium[1], 'Silver', 102),
+          slot(podium[0], 'Champion', 128, winner: true),
+          slot(podium[2], 'Bronze', 92),
+        ],
+      ),
+      const Gap(20),
+    ];
+  }
+
+  List<Widget> _sprintSection(
+    RankingOverview overview,
+    RankingState state,
+    RankingCubit cubit,
+  ) {
+    final sprint = overview.sprint;
+    if (sprint == null) return const [];
+
+    return [
+      RankingSprintCard(
+        sprint: sprint,
+        isJoining: state.isJoining,
+        onJoin: cubit.joinSprint,
+      ),
+    ];
+  }
+
+  List<Widget> _badgesSection(RankingOverview overview) {
+    return [
+      Row(
+        children: [
+          const Expanded(
+            child: Text(
+              'Earned Badges',
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w800,
               ),
             ),
-            Gap(8),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text('View All (${overview.totalBadges})'),
+          ),
+        ],
+      ),
+      Row(
+        children: [
+          for (var i = 0; i < overview.badges.length && i < 3; i++) ...[
+            if (i > 0) const Gap(8),
             Expanded(
               child: RankingBadge(
-                Icons.bug_report_outlined,
-                'Bug Hunter',
-                '0 regression',
-              ),
-            ),
-            Gap(8),
-            Expanded(
-              child: RankingBadge(
-                Icons.code,
-                'Clean Code',
-                'Peer-approved',
+                _badgeIcon(overview.badges[i].key),
+                overview.badges[i].title,
+                overview.badges[i].subtitle,
               ),
             ),
           ],
-        ),
-      ],
-    );
+        ],
+      ),
+    ];
   }
 }

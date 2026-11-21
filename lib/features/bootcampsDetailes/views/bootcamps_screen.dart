@@ -116,14 +116,14 @@ class _BootcampsScreenState extends State<BootcampsScreen> {
                 ),
               ),
 
-              // 2. الجزء اللي بيسكرول بس: الكروت
+              
               Expanded(
                 child: items.isEmpty
                     ? const Center(child: Text('No bootcamps match your filter.'))
                     : ListView.separated(
                         padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
                         itemCount: items.length,
-                        separatorBuilder: (_, __) => const Gap(14),
+                        separatorBuilder: (_, _) => const Gap(14),
                         itemBuilder: (context, index) {
                           final bootcamp = items[index];
                           return BootcampCard(
@@ -136,7 +136,7 @@ class _BootcampsScreenState extends State<BootcampsScreen> {
                       ),
               ),
 
-              // 3. الجزء الثابت السفلي: البانر
+              
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 6, 16, 10),
                 child: CreateBootcampBanner(

@@ -20,13 +20,13 @@ class BootcampDetailsHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 1. صورة عريضة بمسافة مريحة من فوق والجناب + سهم الرجوع على الشمال
+        
         Padding(
           padding: EdgeInsets.fromLTRB(16, topPadding + 10, 16, 0),
           child: Stack(
             children: [
               Hero(
-                tag: 'bootcamp-image-${bootcamp.id ?? bootcamp.title}',
+                tag: 'bootcamp-image-${bootcamp.id}',
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: SizedBox(
@@ -35,7 +35,7 @@ class BootcampDetailsHeader extends StatelessWidget {
                     child: Image.asset(
                       bootcamp.imageAsset,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (_ , _ , _) => Container(
                         color: LightPalette.primaryColor100,
                         child: const Icon(
                           Icons.code,
@@ -73,7 +73,7 @@ class BootcampDetailsHeader extends StatelessWidget {
 
         const Gap(5),
 
-        // 2. شارة الحالة + التراك + المدة + العنوان
+        
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
