@@ -3,10 +3,13 @@ import 'package:gap/gap.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 import 'package:masar_app/core/widgets/eyebrow.dart';
 import 'package:masar_app/core/widgets/mint_progress.dart';
+import 'package:masar_app/features/my_learning/data/models/learning_overview.dart';
 import 'package:masar_app/features/my_learning/presentation/widgets/my_learning_components.dart';
 
 class ActiveProgramCard extends StatelessWidget {
-  const ActiveProgramCard({super.key});
+  const ActiveProgramCard({super.key, required this.program});
+
+  final ProgramInfo program;
 
   @override
   Widget build(BuildContext context) {
@@ -26,20 +29,20 @@ class ActiveProgramCard extends StatelessWidget {
             ),
           ),
           const Gap(12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Flutter & Dart Mastery',
-                  style: TextStyle(
+                  program.name,
+                  style: const TextStyle(
                     fontWeight: FontWeight.w800,
                     fontSize: 14,
                   ),
                 ),
                 Text(
-                  'Taqniya Labs • Executive Track',
-                  style: TextStyle(
+                  '${program.provider} • ${program.track}',
+                  style: const TextStyle(
                     fontSize: 10,
                     color: LightPalette.greyColor,
                   ),
@@ -58,7 +61,9 @@ class ActiveProgramCard extends StatelessWidget {
 }
 
 class MasteryCard extends StatelessWidget {
-  const MasteryCard({super.key});
+  const MasteryCard({super.key, required this.mastery});
+
+  final MasteryStats mastery;
 
   @override
   Widget build(BuildContext context) {
@@ -68,23 +73,23 @@ class MasteryCard extends StatelessWidget {
         color: LightPalette.primaryColor,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                '68%',
-                style: TextStyle(
+                '${mastery.progressPercent}%',
+                style: const TextStyle(
                   fontSize: 34,
                   height: 1,
                   fontWeight: FontWeight.w800,
                   color: Color(0xFFC4E9DE),
                 ),
               ),
-              Gap(8),
-              Padding(
+              const Gap(8),
+              const Padding(
                 padding: EdgeInsets.only(bottom: 3),
                 child: Text(
                   'Overall Mastery',
@@ -94,19 +99,24 @@ class MasteryCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Spacer(),
-              MyLearningPill('Grade: 96% (A+)'),
+              const Spacer(),
+              MyLearningPill(
+                'Grade: ${mastery.gradePercent}% (${mastery.gradeLetter})',
+              ),
             ],
           ),
-          Gap(12),
-          MintProgress(value: .68),
-          Gap(14),
+          const Gap(12),
+          MintProgress(value: mastery.progress),
+          const Gap(14),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MyLearningMetric('28/40', 'Days Attended'),
-              MyLearningMetric('12', 'Tasks Graded'),
-              MyLearningMetric('Top 5%', 'Cohort Rank'),
+              MyLearningMetric(
+                '${mastery.daysAttended}/${mastery.totalDays}',
+                'Days Attended',
+              ),
+              MyLearningMetric('${mastery.tasksGraded}', 'Tasks Graded'),
+              MyLearningMetric('Top ${mastery.cohortTopPercent}%', 'Cohort Rank'),
             ],
           ),
         ],
@@ -116,7 +126,31 @@ class MasteryCard extends StatelessWidget {
 }
 
 class NextLabCard extends StatelessWidget {
-  const NextLabCard({super.key});
+  const NextLabCard({super.key, required this.lab});
+
+  final UpcomingLab lab;
+
+  static String _time(DateTime d) {
+    final hour = d.hour % 12 == 0 ? 12 : d.hour % 12;
+    final minute = d.minute.toString().padLeft(2, '0');
+    return '$hour:$minute ${d.hour >= 12 ? 'PM' : 'AM'}';
+  }
+
+  static const _months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ];
+
+  static String _when(DateTime d) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final day = DateTime(d.year, d.month, d.day);
+    final diff = day.difference(today).inDays;
+
+    if (diff == 0) return '${d.hour >= 17 ? 'Tonight' : 'Today'}, ${_time(d)}';
+    if (diff == 1) return 'Tomorrow, ${_time(d)}';
+    return '${_months[d.month - 1]} ${d.day}, ${_time(d)}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -124,19 +158,19 @@ class NextLabCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.circle,
                 size: 8,
                 color: LightPalette.redColor,
               ),
-              Gap(6),
-              Eyebrow('NEXT UPCOMING LAB'),
-              Spacer(),
+              const Gap(6),
+              const Eyebrow('NEXT UPCOMING LAB'),
+              const Spacer(),
               Text(
-                'Tonight, 7:00 PM',
-                style: TextStyle(
+                _when(lab.startsAt),
+                style: const TextStyle(
                   fontSize: 10,
                   color: LightPalette.greyColor,
                 ),
@@ -144,17 +178,17 @@ class NextLabCard extends StatelessWidget {
             ],
           ),
           const Gap(8),
-          const Text(
-            'Implementing HydratedBloc State Persistence',
-            style: TextStyle(
+          Text(
+            lab.title,
+            style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w800,
             ),
           ),
           const Gap(4),
-          const Text(
-            'Session 19 • Lead: Eng. Tariq Mansour',
-            style: TextStyle(
+          Text(
+            'Session ${lab.sessionNumber} • Lead: ${lab.lead}',
+            style: const TextStyle(
               fontSize: 10,
               color: LightPalette.greyColor,
             ),

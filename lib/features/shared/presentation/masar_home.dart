@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:masar_app/core/functions/extensions.dart';
+import 'package:masar_app/features/bootcamp/cubit/create_bootcamp_cubit.dart';
+import 'package:masar_app/features/bootcamp/data/repositories/mock_bootcamp_repository.dart';
 import 'package:masar_app/features/bootcamp/create_bootcamp_screen.dart';
+import 'package:masar_app/features/my_learning/data/repositories/mock_my_learning_repository.dart';
+import 'package:masar_app/features/my_learning/presentation/cubit/my_learning_cubit.dart';
 import 'package:masar_app/features/my_learning/presentation/my_learning_screen.dart';
+import 'package:masar_app/features/ranking/data/repositories/mock_ranking_repository.dart';
+import 'package:masar_app/features/ranking/presentation/cubit/ranking_cubit.dart';
 import 'package:masar_app/features/ranking/presentation/ranking_screen.dart';
 import 'package:masar_app/features/shared/presentation/masar_bottom_nav.dart';
 
@@ -16,8 +23,15 @@ class MasarHome extends StatefulWidget {
 class _MasarHomeState extends State<MasarHome> {
   int _selectedIndex = 2;
 
-  void _openBootcamp() =>
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CreateBootcampScreen()));
+  void _openBootcamp() => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            // Swap MockBootcampRepository for the real one later.
+            create: (_) => CreateBootcampCubit(MockBootcampRepository()),
+            child: const CreateBootcampScreen(),
+          ),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +42,16 @@ class _MasarHomeState extends State<MasarHome> {
           children: [
             const _PlaceholderPage(title: 'Home', icon: Icons.home_outlined),
             const _PlaceholderPage(title: 'Explore', icon: Icons.explore_outlined),
-            MyLearningScreen(onCreateBootcamp: _openBootcamp),
-            const RankingScreen(),
+            BlocProvider(
+              // Swap MockMyLearningRepository for the real one later.
+              create: (_) => MyLearningCubit(MockMyLearningRepository())..load(),
+              child: MyLearningScreen(onCreateBootcamp: _openBootcamp),
+            ),
+            BlocProvider(
+              // Swap MockRankingRepository for the real one later.
+              create: (_) => RankingCubit(MockRankingRepository())..load(),
+              child: const RankingScreen(),
+            ),
             const _PlaceholderPage(title: 'Profile', icon: Icons.person_outline),
           ],
         ),

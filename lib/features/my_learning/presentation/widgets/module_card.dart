@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:masar_app/core/styles/app_colors.dart';
 import 'package:masar_app/core/widgets/eyebrow.dart';
+import 'package:masar_app/features/my_learning/data/models/learning_overview.dart';
 import 'package:masar_app/features/my_learning/presentation/widgets/my_learning_components.dart';
-
-enum ModuleState {
-  done,
-  current,
-  locked,
-}
 
 class MyLearningModuleCard extends StatelessWidget {
   const MyLearningModuleCard({
