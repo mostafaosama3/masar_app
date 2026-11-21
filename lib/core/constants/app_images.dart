@@ -1,4 +1,5 @@
 class AppImages {
+<<<<<<< HEAD
   AppImages._();
 
   // Images - Existing Dev
@@ -27,3 +28,10 @@ class AppImages {
   static const String avatar = 'assets/images/avatar.png';
   static const String course = 'assets/images/course.png';
 }
+=======
+static const String academicInfo = 'assets/images/academic_info.png';
+static const String personalInfo = 'assets/images/personal_info.png';
+static const String protfolieInfo = 'assets/images/portfolio_info.png';
+static const String success = 'assets/lottie/Success.json';  
+}
+>>>>>>> origin/personal_information
