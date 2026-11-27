@@ -1,0 +1,69 @@
+{
+  "@@locale": "en",
+  "skip": "Skip",
+  "next": "Next",
+  "getStarted": "Get Started",
+  "onboarding1Title": "Discover Your Path",
+  "onboarding1Desc": "Explore top bootcamps from leading training companies.",
+  "onboarding2Title": "Learn & Grow",
+  "onboarding2Desc": "Attend sessions, complete tasks, and track your progress.",
+  "onboarding3Title": "Achieve More",
+  "onboarding3Desc": "Earn badges, climb the leaderboard, and reach new heights.",
+  "homeYourPath": "Your Path to Success",
+  "homeWelcomeBack": "Welcome back!",
+  "homeTagline": "Keep going, your success is closer\nthan you think!",
+  "homeJourneyTitle": "YOUR LEARNING JOURNEY",
+  "homeDuration": "DURATION",
+  "homeDeadline": "DEADLINE",
+  "homeProgress": "PROGRESS",
+  "homeNextLesson": "NEXT LESSON",
+  "homeContinue": "Continue",
+  "homeQuizzes": "Quizzes",
+  "homeQuizzesSub": "Test your knowledge",
+  "homeProjects": "Projects",
+  "homeProjectsSub": "Build & Learn",
+  "homeCode": "Code",
+  "homeCodeSub": "Practice",
+  "homeGetHelp": "Get Help",
+  "homeGetHelpSub": "Ask Experts",
+  "homeNextSession": "Next Session",
+  "homeSeeAll": "See All",
+  "homeJoin": "Join",
+  "homeUrgent": "Urgent Submissions",
+  "homeNewCount": "{count} New",
+  "@homeNewCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeWeekly": "Weekly Schedule & Activity",
+  "homeViewDetails": "View Details",
+  "homeLessons": "Lessons",
+  "homeTotalTime": "Total Time",
+  "homeThisWeek": "This Week",
+  "homeCompletedCount": "{count} Completed",
+  "@homeCompletedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeRecommended": "Recommended Next Track",
+  "homeExploreAll": "Explore All",
+  "homeAchievements": "Achievements & Milestones",
+  "homeViewAll": "View All",
+  "homeGreat": "You're doing great!",
+  "homeKeepLearning": "Keep learning to unlock more achievements.",
+  "homeWorkshopTitle": "Join our next workshop!",
+  "homeContinueLearning": "Continue Learning →",
+  "homeDayMon": "MON",
+  "homeDayTue": "TUE",
+  "homeDayWed": "WED",
+  "homeDayThu": "THU",
+  "homeDayFri": "FRI",
+  "homeDaySat": "SAT",
+  "homeDaySun": "SUN"
+}

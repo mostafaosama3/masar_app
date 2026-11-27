@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:masar_app/core/routes/routes_name.dart';
-import 'package:masar_app/features/ONboarding/onboardin.dart';
+import 'package:masar_app/features/onboarding/onboardin.dart';
 import 'package:masar_app/features/profile/profile_screen.dart';
 import 'package:masar_app/features/shared/presentation/masar_home.dart';
 import 'package:masar_app/features/splash/splash_screen.dart';

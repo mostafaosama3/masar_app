@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:masar_app/core/functions/extensions.dart';
 
 import 'package:masar_app/features/bootcamp/cubit/create_bootcamp_cubit.dart';
 import 'package:masar_app/features/bootcamp/data/repositories/mock_bootcamp_repository.dart';
 import 'package:masar_app/features/bootcamp/create_bootcamp_screen.dart';
+
+import 'package:masar_app/features/home/home_screen.dart';
 
 import 'package:masar_app/features/my_learning/data/repositories/mock_my_learning_repository.dart';
 import 'package:masar_app/features/my_learning/presentation/cubit/my_learning_cubit.dart';
@@ -29,7 +30,7 @@ class MasarHome extends StatefulWidget {
 }
 
 class _MasarHomeState extends State<MasarHome> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 0;
 
   void _openBootcamp() => Navigator.of(context).push(
     MaterialPageRoute(
@@ -47,7 +48,7 @@ class _MasarHomeState extends State<MasarHome> {
         child: IndexedStack(
           index: _selectedIndex,
           children: [
-            const _PlaceholderPage(title: 'Home', icon: Icons.home_outlined),
+            const HomeScreen(),
 
             ExploreScreen(),
 
@@ -73,27 +74,6 @@ class _MasarHomeState extends State<MasarHome> {
             _selectedIndex = index;
           });
         },
-      ),
-    );
-  }
-}
-
-class _PlaceholderPage extends StatelessWidget {
-  const _PlaceholderPage({required this.title, required this.icon});
-
-  final String title;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 42, color: context.colorScheme.primary),
-          const SizedBox(height: 10),
-          Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
-        ],
       ),
     );
   }
